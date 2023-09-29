@@ -27,6 +27,7 @@
                <Insets top="40.0" />
             </VBox.margin>
          </Button>
+         <Button mnemonicParsing="false" onAction="#busca" prefHeight="26.0" prefWidth="288.0" text="Busca" />
    
 
         </VBox>

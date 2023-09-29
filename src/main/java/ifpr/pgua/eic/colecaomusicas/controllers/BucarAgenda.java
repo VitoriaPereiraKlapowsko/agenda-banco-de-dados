@@ -3,24 +3,29 @@ package ifpr.pgua.eic.colecaomusicas.controllers;
 import ifpr.pgua.eic.colecaomusicas.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class CadastroAgenda {
+public class BucarAgenda {
 
     @FXML
-    private TextField txCodigo;
+    private ListView<?> lstCadatrados;
 
     @FXML
-    private TextField txEmail;
+    private TextField txBucarCadastrado;
 
     @FXML
-    private TextField txNome;
+    void alterar(ActionEvent event) {
+
+    }
 
     @FXML
-    private TextField txTelefone;
+    void bucar(ActionEvent event) {
+
+    }
 
     @FXML
-    void cadastrar(ActionEvent event) {
+    void excluir(ActionEvent event) {
 
     }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="480" prefWidth="640" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.colecaomusicas.controllers.Principal">
+
+    <padding>
+        <Insets topRightBottomLeft="20" />
+    </padding>
+
+    <left>
+        <VBox alignment="CENTER" prefHeight="440.0" prefWidth="594.0" spacing="5.0">
+            <padding>
+                <Insets topRightBottomLeft="20" />
+            </padding>
+            <Button onAction="#cadastrarGenero" prefWidth="200" text="Cadastrar Gênero" />
+            <Button onAction="#listarGeneros" prefWidth="200" text="Listar Gêneros" />
+            <Button onAction="#cadastrarArtista" prefWidth="200" text="Cadastrar Artista" />
+            <Button onAction="#listarArtistas" prefWidth="200" text="Listar Artistas" />
+            <Button onAction="#cadastrarMusica" prefWidth="200" text="Cadastrar Música" />
+            <Button onAction="#listarMusicas" prefWidth="200" text="Listar Músicas" />
+         <Button mnemonicParsing="false" onAction="#cadastrarPlaylist" prefHeight="26.0" prefWidth="200.0" text="Cadastrar Playlist" />
+         <Button mnemonicParsing="false" onAction="#listarPlaylist" prefHeight="26.0" prefWidth="200.0" text="Listar Playlist" />
+   
+
+        </VBox>
+    </left>
+</BorderPane>

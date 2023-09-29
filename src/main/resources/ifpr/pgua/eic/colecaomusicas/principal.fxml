@@ -16,14 +16,7 @@
             <padding>
                 <Insets topRightBottomLeft="20" />
             </padding>
-            <Button onAction="#cadastrarGenero" prefWidth="200" text="Cadastrar Gênero" />
-            <Button onAction="#listarGeneros" prefWidth="200" text="Listar Gêneros" />
-            <Button onAction="#cadastrarArtista" prefWidth="200" text="Cadastrar Artista" />
-            <Button onAction="#listarArtistas" prefWidth="200" text="Listar Artistas" />
-            <Button onAction="#cadastrarMusica" prefWidth="200" text="Cadastrar Música" />
-            <Button onAction="#listarMusicas" prefWidth="200" text="Listar Músicas" />
-         <Button mnemonicParsing="false" onAction="#cadastrarPlaylist" prefHeight="26.0" prefWidth="200.0" text="Cadastrar Playlist" />
-         <Button mnemonicParsing="false" onAction="#listarPlaylist" prefHeight="26.0" prefWidth="200.0" text="Listar Playlist" />
+         <Button mnemonicParsing="false" onAction="#cadastro" prefHeight="26.0" prefWidth="201.0" text="Cadastro" />
    
 
         </VBox>

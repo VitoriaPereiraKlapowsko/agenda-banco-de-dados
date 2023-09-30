@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class BucarAgenda implements Initializable{
+public class BucarAgenda implements Initializable {
 
     @FXML
     private ListView<Agenda> lstCadatrados;
@@ -43,7 +43,40 @@ public class BucarAgenda implements Initializable{
 
     @FXML
     void excluir(ActionEvent event) {
+        Agenda contatoSelecionado = lstCadatrados.getSelectionModel().getSelectedItem();
 
+        if (contatoSelecionado != null) {
+            Resultado resultado = repositorioAgenda.excluirContato(contatoSelecionado.getCodigo());
+
+            if (resultado.foiSucesso()) {
+                exibirMensagem("Sucesso", resultado.getMsg());
+                atualizarListaContatos();
+            } else {
+                exibirMensagem("Erro", resultado.getMsg());
+            }
+        } else {
+            exibirMensagem("Erro", "Nenhum contato selecionado.");
+        }
+    }
+
+    private void atualizarListaContatos() {
+        lstCadatrados.getItems().clear();
+        Resultado resultado = repositorioAgenda.listarContatos();
+
+        if (resultado.foiErro()) {
+            exibirMensagem("Erro", resultado.getMsg());
+        } else {
+            List<Agenda> lista = (List<Agenda>) resultado.comoSucesso().getObj();
+            lstCadatrados.getItems().addAll(lista);
+        }
+    }
+
+    private void exibirMensagem(String string, String msg) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(string);
+        alert.setHeaderText(null);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 
     @FXML
@@ -51,7 +84,7 @@ public class BucarAgenda implements Initializable{
         App.popScreen();
     }
 
-     @Override
+    @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         lstCadatrados.getItems().clear();
         Resultado resultado = repositorioAgenda.listarContatos();

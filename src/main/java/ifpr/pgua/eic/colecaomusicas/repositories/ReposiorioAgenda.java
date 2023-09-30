@@ -42,5 +42,17 @@ public class ReposiorioAgenda {
     public Resultado excluirContato(int codigo) {
         return dao.excluir(codigo);
     }
-}
+
+    public Resultado buscarPorCriterio(String criterio) {
+        if (criterio == null || criterio.isEmpty()) {
+            return Resultado.erro("Erro... informe um critério de busca!");
+        } else {
+            try {
+                int codigo = Integer.parseInt(criterio);
+                return dao.buscarPorCodigo(codigo);
+            } catch (NumberFormatException e) {
+                return dao.buscarPorNome(criterio); 
+            }
+    }
+}}
 

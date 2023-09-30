@@ -37,8 +37,42 @@ public class BucarAgenda implements Initializable {
     }
 
     @FXML
-    void bucar(ActionEvent event) {
+    void buscar(ActionEvent event) {
+        String criterio = txBucarCadastrado.getText();
 
+        if (criterio.isEmpty()) {
+            alertaUsuario("Erro... informe um critério de busca!");
+            return;
+        }
+
+        Resultado resultadoBusca = repositorioAgenda.buscarPorCriterio(criterio);
+
+        if (resultadoBusca.foiSucesso()) {
+            List<Agenda> contatosEncontrados = (List<Agenda>) resultadoBusca.comoSucesso().getObj();
+            exibirContatos(contatosEncontrados);
+        } else {
+            erroUsuario("Nenhum contato encontrado com o critério fornecido.");
+        }
+    }
+    private void alertaUsuario(String mensagem){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Atenção");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+    
+    private void erroUsuario(String mensagem){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+    
+
+    private void exibirContatos(List<Agenda> contatos) {
+        lstCadatrados.getItems().setAll(contatos);
     }
 
     @FXML

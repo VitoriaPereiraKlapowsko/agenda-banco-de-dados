@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.colecaomusicas.controllers.BucarAgenda">
    <children>
       <Label text="Buscar:">
@@ -20,7 +19,7 @@
             <Insets left="10.0" top="20.0" />
          </HBox.margin>
       </TextField>
-      <Button mnemonicParsing="false" onAction="#bucar" text="Buscar">
+      <Button mnemonicParsing="false" onAction="#buscar" text="Buscar">
          <HBox.margin>
             <Insets left="10.0" top="20.0" />
          </HBox.margin>

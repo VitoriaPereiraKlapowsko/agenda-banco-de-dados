@@ -36,7 +36,7 @@ public class BucarAgenda implements Initializable {
     private void alterar() {
         Agenda agenda = lstCadatrados.getSelectionModel().getSelectedItem();
         if (agenda != null) {
-            App.pushScreen("CADASTROAGENDA", o -> new CadastroAgenda(repositorioAgenda, agenda));
+           App.pushScreen("CADASTROAGENDA");
         }
     }
 

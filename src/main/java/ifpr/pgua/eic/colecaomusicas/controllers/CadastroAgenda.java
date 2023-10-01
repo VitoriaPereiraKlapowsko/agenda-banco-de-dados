@@ -2,9 +2,7 @@ package ifpr.pgua.eic.colecaomusicas.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.github.hugoperlin.results.Resultado;
-
 import ifpr.pgua.eic.colecaomusicas.App;
 import ifpr.pgua.eic.colecaomusicas.models.Agenda;
 import ifpr.pgua.eic.colecaomusicas.repositories.ReposiorioAgenda;
@@ -62,7 +60,7 @@ public class CadastroAgenda implements Initializable {
                 exibirMensagem("Erro", resultado.getMsg());
             }
         } catch (NumberFormatException e) {
-            exibirMensagem("Erro", "O código e telefone devem ser números inteiros.");
+            exibirMensagem("Erro", "O código e telefone devem ser números inteiros...");
         }
     }
 

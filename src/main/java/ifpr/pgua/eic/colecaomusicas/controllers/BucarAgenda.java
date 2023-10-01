@@ -3,12 +3,9 @@ package ifpr.pgua.eic.colecaomusicas.controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import com.github.hugoperlin.results.Resultado;
-
 import ifpr.pgua.eic.colecaomusicas.App;
 import ifpr.pgua.eic.colecaomusicas.models.Agenda;
-import ifpr.pgua.eic.colecaomusicas.controllers.CadastroAgenda;
 import ifpr.pgua.eic.colecaomusicas.repositories.ReposiorioAgenda;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +42,7 @@ public class BucarAgenda implements Initializable {
         String criterio = txBucarCadastrado.getText();
 
         if (criterio.isEmpty()) {
-            alertaUsuario("Erro... informe um critério de busca!");
+            alertaUsuario("Erro... informe um Nome para a busca!");
             return;
         }
 
@@ -55,7 +52,7 @@ public class BucarAgenda implements Initializable {
             List<Agenda> contatosEncontrados = (List<Agenda>) resultadoBusca.comoSucesso().getObj();
             exibirContatos(contatosEncontrados);
         } else {
-            erroUsuario("Nenhum contato encontrado com o critério fornecido.");
+            erroUsuario("Nenhum contato encontrado com o Nome fornecido.");
         }
     }
 
@@ -93,7 +90,7 @@ public class BucarAgenda implements Initializable {
                 exibirMensagem("Erro", resultado.getMsg());
             }
         } else {
-            exibirMensagem("Erro", "Nenhum contato selecionado.");
+            exibirMensagem("Erro", "Nenhum contato selecionado...");
         }
     }
 

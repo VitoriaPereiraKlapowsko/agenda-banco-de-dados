@@ -19,20 +19,8 @@ public class ReposiorioAgenda {
         return dao.listar();
     }
 
-    public Resultado buscarContatoPorCodigo(int codigo) {
-        return dao.buscarPorCodigo(codigo);
-    }
-
     public Resultado buscarContatoPorNome(String nome) {
         return dao.buscarPorNome(nome);
-    }
-
-    public Resultado buscarContatoPorTelefone(int telefone) {
-        return dao.buscarPorTelefone(telefone);
-    }
-
-    public Resultado buscarContatoPorEmail(String email) {
-        return dao.buscarPorEmail(email);
     }
 
     public Resultado atualizarContato(int codigo, Agenda novoContato) {

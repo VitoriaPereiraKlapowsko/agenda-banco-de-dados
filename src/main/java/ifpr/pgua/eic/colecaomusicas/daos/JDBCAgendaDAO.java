@@ -34,9 +34,9 @@ public class JDBCAgendaDAO implements AgendaDAO {
             int ret = pstm.executeUpdate();
 
             if (ret == 1) {
-                return Resultado.sucesso("Contato cadastrado com sucesso", contato);
+                return Resultado.sucesso("Contato cadastrado com sucesso!!!", contato);
             } else {
-                return Resultado.erro("Erro desconhecido!");
+                return Resultado.erro("Erro ao cadastrar!");
             }
         } catch (SQLException e) {
             return Resultado.erro(e.getMessage());
@@ -81,7 +81,7 @@ public class JDBCAgendaDAO implements AgendaDAO {
                 Agenda contato = new Agenda(codigo, nome, telefone, email);
                 return Resultado.sucesso("Contato encontrado", contato);
             } else {
-                return Resultado.erro("Contato não encontrado");
+                return Resultado.erro("Contato não encontrado...");
             }
         } catch (SQLException e) {
             return Resultado.erro(e.getMessage());
@@ -108,52 +108,15 @@ public class JDBCAgendaDAO implements AgendaDAO {
             }
 
             if (!lista.isEmpty()) {
-                return Resultado.sucesso("Contatos encontrados", lista);
+                return Resultado.sucesso("Contatos encontrados!", lista);
             } else {
-                return Resultado.erro("Nenhum contato encontrado com o nome fornecido");
+                return Resultado.erro("Nenhum contato foi encontrado com o Nome fornecido...");
             }
         } catch (SQLException e) {
             return Resultado.erro(e.getMessage());
         }
     }
 
-    @Override
-    public Resultado buscarPorTelefone(int telefone) {
-        try (Connection con = fabrica.getConnection()) {
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM telefone WHERE telefone = ?");
-            pstm.setInt(1, telefone);
-
-            ResultSet rs = pstm.executeQuery();
-
-            if (rs.next()) {
-                int codigo = rs.getInt("codigo");
-                return buscarPorCodigo(codigo);
-            } else {
-                return Resultado.erro("Contato não encontrado com o telefone fornecido");
-            }
-        } catch (SQLException e) {
-            return Resultado.erro(e.getMessage());
-        }
-    }
-
-    @Override
-    public Resultado buscarPorEmail(String email) {
-        try (Connection con = fabrica.getConnection()) {
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM email WHERE email = ?");
-            pstm.setString(1, email);
-
-            ResultSet rs = pstm.executeQuery();
-
-            if (rs.next()) {
-                int codigo = rs.getInt("codigo");
-                return buscarPorCodigo(codigo);
-            } else {
-                return Resultado.erro("Contato não encontrado com o e-mail fornecido");
-            }
-        } catch (SQLException e) {
-            return Resultado.erro(e.getMessage());
-        }
-    }
 
     @Override
     public Resultado atualizar(int codigo, Agenda novoContato) {
@@ -166,9 +129,9 @@ public class JDBCAgendaDAO implements AgendaDAO {
             int ret = pstm.executeUpdate();
 
             if (ret == 1) {
-                return Resultado.sucesso("Contato atualizado com sucesso", novoContato);
+                return Resultado.sucesso("Contato atualizado com sucesso!", novoContato);
             } else {
-                return Resultado.erro("Contato não encontrado ou erro desconhecido!");
+                return Resultado.erro("Contato não encontrado ou Erro...");
             }
         } catch (SQLException e) {
             return Resultado.erro(e.getMessage());
@@ -186,7 +149,7 @@ public class JDBCAgendaDAO implements AgendaDAO {
             if (ret == 1) {
                 return Resultado.sucesso("Contato excluído com sucesso", con);
             } else {
-                return Resultado.erro("Contato não encontrado ou erro desconhecido!");
+                return Resultado.erro("Contato não encontrado ou Erro...");
             }
         } catch (SQLException e) {
             return Resultado.erro(e.getMessage());

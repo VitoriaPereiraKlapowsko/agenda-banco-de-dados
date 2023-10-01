@@ -8,8 +8,6 @@ public interface AgendaDAO {
     Resultado listar();
     Resultado buscarPorCodigo(int codigo); 
     Resultado buscarPorNome(String nome);
-    Resultado buscarPorTelefone(int telefone); 
-    Resultado buscarPorEmail(String email); 
     Resultado atualizar(int codigo, Agenda novoContato);
     Resultado excluir(int codigo);
 }

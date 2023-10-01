@@ -8,6 +8,7 @@ import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.App;
 import ifpr.pgua.eic.colecaomusicas.models.Agenda;
+import ifpr.pgua.eic.colecaomusicas.controllers.CadastroAgenda;
 import ifpr.pgua.eic.colecaomusicas.repositories.ReposiorioAgenda;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,8 +33,11 @@ public class BucarAgenda implements Initializable {
     }
 
     @FXML
-    void alterar(ActionEvent event) {
-
+    private void alterar() {
+        Agenda agenda = lstCadatrados.getSelectionModel().getSelectedItem();
+        if (agenda != null) {
+            App.pushScreen("CADASTROAGENDA", o -> new CadastroAgenda(repositorioAgenda, agenda));
+        }
     }
 
     @FXML
@@ -54,22 +58,22 @@ public class BucarAgenda implements Initializable {
             erroUsuario("Nenhum contato encontrado com o critério fornecido.");
         }
     }
-    private void alertaUsuario(String mensagem){
+
+    private void alertaUsuario(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Atenção");
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
-    
-    private void erroUsuario(String mensagem){
+
+    private void erroUsuario(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
-    
 
     private void exibirContatos(List<Agenda> contatos) {
         lstCadatrados.getItems().setAll(contatos);
@@ -131,5 +135,4 @@ public class BucarAgenda implements Initializable {
             lstCadatrados.getItems().addAll(lista);
         }
     }
-
 }

@@ -1,5 +1,8 @@
 package ifpr.pgua.eic.colecaomusicas.controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.github.hugoperlin.results.Resultado;
 
 import ifpr.pgua.eic.colecaomusicas.App;
@@ -7,11 +10,12 @@ import ifpr.pgua.eic.colecaomusicas.models.Agenda;
 import ifpr.pgua.eic.colecaomusicas.repositories.ReposiorioAgenda;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
-public class CadastroAgenda {
+public class CadastroAgenda implements Initializable {
 
     @FXML
     private TextField txCodigo;
@@ -27,8 +31,15 @@ public class CadastroAgenda {
 
     private ReposiorioAgenda repositorioAgenda;
 
+    private Agenda antigo;
+
     public CadastroAgenda(ReposiorioAgenda repositorioAgenda) {
         this.repositorioAgenda = repositorioAgenda;
+    }
+
+    public CadastroAgenda(ReposiorioAgenda repositorioAgenda, Agenda agenda) {
+        this.repositorioAgenda = repositorioAgenda;
+        this.antigo = agenda;
     }
 
     @FXML
@@ -52,6 +63,16 @@ public class CadastroAgenda {
             }
         } catch (NumberFormatException e) {
             exibirMensagem("Erro", "O código e telefone devem ser números inteiros.");
+        }
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        if (antigo != null) {
+            txCodigo.setText(String.valueOf(antigo.getCodigo()));
+            txEmail.setText(antigo.getEmail());
+            txNome.setText(antigo.getNome());
+            txTelefone.setText(String.valueOf(antigo.getTelefone()));
         }
     }
 

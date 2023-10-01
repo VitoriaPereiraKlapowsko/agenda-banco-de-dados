@@ -27,7 +27,7 @@ public class ReposiorioAgenda {
         return dao.buscarPorNome(nome);
     }
 
-    public Resultado buscarContatoPorTelefone(int telefone) {  
+    public Resultado buscarContatoPorTelefone(int telefone) {
         return dao.buscarPorTelefone(telefone);
     }
 
@@ -51,8 +51,14 @@ public class ReposiorioAgenda {
                 int codigo = Integer.parseInt(criterio);
                 return dao.buscarPorCodigo(codigo);
             } catch (NumberFormatException e) {
-                return dao.buscarPorNome(criterio); 
+                return dao.buscarPorNome(criterio);
             }
+        }
     }
-}}
 
+    public Resultado alterarContato(int codigo, String nome, int telefone, String email) {
+        Agenda novoContato = new Agenda(codigo, nome, telefone, email);
+        return dao.atualizar(codigo, novoContato);
+    }
+    
+}

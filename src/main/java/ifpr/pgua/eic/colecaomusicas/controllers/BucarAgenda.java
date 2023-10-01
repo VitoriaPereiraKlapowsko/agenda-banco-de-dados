@@ -39,14 +39,12 @@ public class BucarAgenda implements Initializable {
 
     @FXML
     void buscar(ActionEvent event) {
-        String criterio = txBucarCadastrado.getText();
-
-        if (criterio.isEmpty()) {
+        String nomeContato = txBucarCadastrado.getText();
+        if (nomeContato.isEmpty()) {
             alertaUsuario("Erro... informe um Nome para a busca!");
             return;
         }
-
-        Resultado resultadoBusca = repositorioAgenda.buscarPorCriterio(criterio);
+        Resultado resultadoBusca = repositorioAgenda.buscarPorNome(nomeContato);
 
         if (resultadoBusca.foiSucesso()) {
             List<Agenda> contatosEncontrados = (List<Agenda>) resultadoBusca.comoSucesso().getObj();
@@ -59,7 +57,6 @@ public class BucarAgenda implements Initializable {
     private void alertaUsuario(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Atenção");
-        alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
@@ -67,7 +64,6 @@ public class BucarAgenda implements Initializable {
     private void erroUsuario(String mensagem) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro");
-        alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
@@ -82,7 +78,6 @@ public class BucarAgenda implements Initializable {
 
         if (contatoSelecionado != null) {
             Resultado resultado = repositorioAgenda.excluirContato(contatoSelecionado.getCodigo());
-
             if (resultado.foiSucesso()) {
                 exibirMensagem("Sucesso", resultado.getMsg());
                 atualizarListaContatos();
@@ -109,7 +104,6 @@ public class BucarAgenda implements Initializable {
     private void exibirMensagem(String string, String msg) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(string);
-        alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
     }

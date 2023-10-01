@@ -46,23 +46,27 @@ public class CadastroAgenda implements Initializable {
         String nome = txNome.getText();
         String telefoneStr = txTelefone.getText();
         String email = txEmail.getText();
-
-        try {
-            int codigo = Integer.parseInt(codigoStr);
-            int telefone = Integer.parseInt(telefoneStr);
-            Agenda novoContato = new Agenda(codigo, nome, telefone, email);
-            Resultado resultado = repositorioAgenda.cadastrarContato(novoContato);
-
-            if (resultado.foiSucesso()) {
-                exibirMensagem("Sucesso", "Contato cadastrado com sucesso!");
-                limparCampos();
-            } else {
-                exibirMensagem("Erro", resultado.getMsg());
+    
+        if (!codigoStr.isEmpty() && !nome.isEmpty() && !telefoneStr.isEmpty() && !email.isEmpty()) {
+            try {
+                int codigo = Integer.parseInt(codigoStr);
+                int telefone = Integer.parseInt(telefoneStr);
+                Agenda novoContato = new Agenda(codigo, nome, telefone, email);
+                Resultado resultado = repositorioAgenda.cadastrarContato(novoContato);
+    
+                if (resultado.foiSucesso()) {
+                    exibirMensagem("Sucesso", "Contato cadastrado com sucesso!");
+                    limparCampos();
+                } else {
+                    exibirMensagem("Erro", resultado.getMsg());
+                }
+            } catch (NumberFormatException e) {
+                exibirMensagem("Erro", "O código e telefone devem ser números inteiros...");
             }
-        } catch (NumberFormatException e) {
-            exibirMensagem("Erro", "O código e telefone devem ser números inteiros...");
+        } else {
+            exibirMensagem("Erro", "Preencha todos os campos obrigatórios.");
         }
-    }
+    }    
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -82,7 +86,6 @@ public class CadastroAgenda implements Initializable {
     private void exibirMensagem(String titulo, String mensagem) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(titulo);
-        alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
     }

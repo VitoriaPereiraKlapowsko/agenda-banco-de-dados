@@ -6,7 +6,6 @@ import ifpr.pgua.eic.colecaomusicas.models.Agenda;
 public interface AgendaDAO {
     Resultado criar(Agenda contato);
     Resultado listar();
-    Resultado buscarPorCodigo(int codigo); 
     Resultado buscarPorNome(String nome);
     Resultado atualizar(int codigo, Agenda novoContato);
     Resultado excluir(int codigo);

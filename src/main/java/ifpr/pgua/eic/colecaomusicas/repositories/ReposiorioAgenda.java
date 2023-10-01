@@ -19,27 +19,18 @@ public class ReposiorioAgenda {
         return dao.listar();
     }
 
-    public Resultado buscarContatoPorNome(String nome) {
-        return dao.buscarPorNome(nome);
-    }
-
-    public Resultado atualizarContato(int codigo, Agenda novoContato) {
-        return dao.atualizar(codigo, novoContato);
-    }
-
     public Resultado excluirContato(int codigo) {
         return dao.excluir(codigo);
     }
 
-    public Resultado buscarPorCriterio(String criterio) {
-        if (criterio == null || criterio.isEmpty()) {
-            return Resultado.erro("Erro... informe um critério de busca!");
+    public Resultado buscarPorNome(String nomeContato) {
+        if (nomeContato == null || nomeContato.isEmpty()) {
+            return Resultado.erro("Erro... informe um Nome para a busca!");
         } else {
             try {
-                int codigo = Integer.parseInt(criterio);
-                return dao.buscarPorCodigo(codigo);
+                return dao.buscarPorNome(nomeContato);
             } catch (NumberFormatException e) {
-                return dao.buscarPorNome(criterio);
+                return dao.buscarPorNome(nomeContato);
             }
         }
     }
@@ -48,5 +39,4 @@ public class ReposiorioAgenda {
         Agenda novoContato = new Agenda(codigo, nome, telefone, email);
         return dao.atualizar(codigo, novoContato);
     }
-    
 }

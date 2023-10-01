@@ -67,28 +67,6 @@ public class JDBCAgendaDAO implements AgendaDAO {
     }
 
     @Override
-    public Resultado buscarPorCodigo(int codigo) {
-        try (Connection con = fabrica.getConnection()) {
-            PreparedStatement pstm = con.prepareStatement(SELECTSQL);
-            pstm.setInt(1, codigo);
-
-            ResultSet rs = pstm.executeQuery();
-
-            if (rs.next()) {
-                String nome = rs.getString("nome");
-                int telefone = rs.getInt("telefone");
-                String email = rs.getString("email");
-                Agenda contato = new Agenda(codigo, nome, telefone, email);
-                return Resultado.sucesso("Contato encontrado", contato);
-            } else {
-                return Resultado.erro("Contato não encontrado...");
-            }
-        } catch (SQLException e) {
-            return Resultado.erro(e.getMessage());
-        }
-    }
-
-    @Override
     public Resultado buscarPorNome(String nome) {
         try (Connection con = fabrica.getConnection()) {
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM agenda WHERE nome = ?");
